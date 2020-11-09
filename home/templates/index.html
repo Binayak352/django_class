@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url "app:add_book"%}">Add New Book </a>
+{% if request.user.is_active %}
+	<p>Welcome {{ user }}</p>
+	<a href="{% url 'user:logout' %}">Logout</a>
+{%else%}
+	<p>Welcome</p>
+	<a href="{% url 'user:login' %}">Login</a>
+{% endif %}
+{% for obj in books %}
+{% if obj.book_image %}
+<img src = "{{ obj.book_image.url }}" alt = "">
+{% endif %}
+<p><strong>Name: </strong> {{obj.name}}</p>
+<p><strong>Isbn: </strong> {{obj.isbn}}</p>
+<p><strong>Price: </strong> {{obj.price}}</p>
+<a href="{% url 'app:edit_book' obj.id %}">Edit</a>
+<hr>
+{% endfor %}
+{% endblock %}

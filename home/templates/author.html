@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<a href="{% url "app:add_author"%}">Add New Author </a>
+{% for obj in authors %}
+<p><strong>Name: </strong> {{obj.name}}</p>
+<p><strong>Contact: </strong> {{obj.contact}}</p>
+<p><strong>Address: </strong> {{obj.address}}</p>
+<a href="{% url 'app:edit_author' obj.id %}">Edit</a>
+<hr>
+{% endfor %}
+{% endblock %}
